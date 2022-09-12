@@ -1,18 +1,23 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 
 
 function App() {
-  const [favorite, setFavorite] = useState ("singing");
+  const [seconds, setSeconds] = useState(10);
+
+  useEffect(() => {
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    } else {
+      setSeconds(0);
+    }
+  });
+
   return (
-    <div className='App'>
-      <h1>My Favorite thing to do is {favorite}!</h1>
-      <button onClick={()=>setFavorite("reading")}>Reading</button>
-      <button onClick={()=>setFavorite("singing")}>Singing</button>
-      <button onClick={()=>setFavorite("dancing")}>Dancing</button>
-      <button onClick={()=>setFavorite("watching movies")}>Watching Movies</button>
-      
+    <div className="App">
+        <h1>Count down from 10: {seconds}</h1>
     </div>
   );
 }
+
 export default App;
 
